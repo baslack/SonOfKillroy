@@ -1,14 +1,14 @@
 -----------------------------------------------------------------------------------------------
--- Client Lua Script for SonOfKillroy2
+-- Client Lua Script for SonOfKillroy
 -- Copyright (c) NCsoft. All rights reserved
 -----------------------------------------------------------------------------------------------
  
 require "Window"
  
 -----------------------------------------------------------------------------------------------
--- SonOfKillroy2 Module Definition
+-- SonOfKillroy Module Definition
 -----------------------------------------------------------------------------------------------
-local SonOfKillroy2 = {} 
+local SonOfKillroy = {} 
  
 -----------------------------------------------------------------------------------------------
 -- Constants
@@ -18,7 +18,7 @@ local SonOfKillroy2 = {}
 -----------------------------------------------------------------------------------------------
 -- Initialization
 -----------------------------------------------------------------------------------------------
-function SonOfKillroy2:new(o)
+function SonOfKillroy:new(o)
     o = o or {}
     setmetatable(o, self)
     self.__index = self 
@@ -28,7 +28,7 @@ function SonOfKillroy2:new(o)
     return o
 end
 
-function SonOfKillroy2:Init()
+function SonOfKillroy:Init()
 	local bHasConfigureFunction = false
 	local strConfigureButtonText = ""
 	local tDependencies = {
@@ -39,21 +39,21 @@ end
  
 
 -----------------------------------------------------------------------------------------------
--- SonOfKillroy2 OnLoad
+-- SonOfKillroy OnLoad
 -----------------------------------------------------------------------------------------------
-function SonOfKillroy2:OnLoad()
+function SonOfKillroy:OnLoad()
     -- load our form file
-	self.xmlDoc = XmlDoc.CreateFromFile("SonOfKillroy2.xml")
+	self.xmlDoc = XmlDoc.CreateFromFile("SonOfKillroy.xml")
 	self.xmlDoc:RegisterCallback("OnDocLoaded", self)
 end
 
 -----------------------------------------------------------------------------------------------
--- SonOfKillroy2 OnDocLoaded
+-- SonOfKillroy OnDocLoaded
 -----------------------------------------------------------------------------------------------
-function SonOfKillroy2:OnDocLoaded()
+function SonOfKillroy:OnDocLoaded()
 
 	if self.xmlDoc ~= nil and self.xmlDoc:IsLoaded() then
-	    self.wndMain = Apollo.LoadForm(self.xmlDoc, "SonOfKillroy2Form", nil, self)
+	    self.wndMain = Apollo.LoadForm(self.xmlDoc, "SonOfKillroyForm", nil, self)
 		if self.wndMain == nil then
 			Apollo.AddAddonErrorText(self, "Could not load the main window for some reason.")
 			return
@@ -62,11 +62,11 @@ function SonOfKillroy2:OnDocLoaded()
 	    self.wndMain:Show(false, true)
 
 		-- if the xmlDoc is no longer needed, you should set it to nil
-		-- self.xmlDoc = nil
+		self.xmlDoc = nil
 		
 		-- Register handlers for events, slash commands and timer, etc.
 		-- e.g. Apollo.RegisterEventHandler("KeyDown", "OnKeyDown", self)
-		Apollo.RegisterSlashCommand("sok", "OnSonOfKillroy2On", self)
+		Apollo.RegisterSlashCommand("sok", "OnSonOfKillroyOn", self)
 
 
 		-- Do additional Addon initialization here
@@ -74,32 +74,32 @@ function SonOfKillroy2:OnDocLoaded()
 end
 
 -----------------------------------------------------------------------------------------------
--- SonOfKillroy2 Functions
+-- SonOfKillroy Functions
 -----------------------------------------------------------------------------------------------
 -- Define general functions here
 
 -- on SlashCommand "/sok"
-function SonOfKillroy2:OnSonOfKillroy2On()
+function SonOfKillroy:OnSonOfKillroyOn()
 	self.wndMain:Invoke() -- show the window
 end
 
 
 -----------------------------------------------------------------------------------------------
--- SonOfKillroy2Form Functions
+-- SonOfKillroyForm Functions
 -----------------------------------------------------------------------------------------------
 -- when the OK button is clicked
-function SonOfKillroy2:OnOK()
+function SonOfKillroy:OnOK()
 	self.wndMain:Close() -- hide the window
 end
 
 -- when the Cancel button is clicked
-function SonOfKillroy2:OnCancel()
+function SonOfKillroy:OnCancel()
 	self.wndMain:Close() -- hide the window
 end
 
 
 -----------------------------------------------------------------------------------------------
--- SonOfKillroy2 Instance
+-- SonOfKillroy Instance
 -----------------------------------------------------------------------------------------------
-local SonOfKillroy2Inst = SonOfKillroy2:new()
-SonOfKillroy2Inst:Init()
+local SonOfKillroyInst = SonOfKillroy:new()
+SonOfKillroyInst:Init()
