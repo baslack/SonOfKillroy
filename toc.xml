@@ -11,4 +11,5 @@
     <Script Name="lib\GeminiTimer\GeminiTimer-1.0.lua"/>
     <Script Name="lib\XmlDocument\XmlDocument.lua"/>
     <Script Name="lib\Script\Script.lua"/>
+    <Script Name="lib\CallbackHandler\CallbackHandler-1.0.lua"/>
 </Addon>
