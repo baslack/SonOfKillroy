@@ -1,0 +1,24 @@
+[submodule "lib/GeminiAddon"]
+	path = lib/GeminiAddon
+	url = https://github.com/wildstarnasa/GeminiAddon.git
+[submodule "lib/GeminiColor"]
+	path = lib/GeminiColor
+	url = https://github.com/wildstarnasa/GeminiColor.git
+[submodule "lib/GeminiDB"]
+	path = lib/GeminiDB
+	url = https://github.com/wildstarnasa/GeminiDB.git
+[submodule "lib/GeminiEvent"]
+	path = lib/GeminiEvent
+	url = https://github.com/wildstarnasa/GeminiEvent.git
+[submodule "lib/GeminiLogging"]
+	path = lib/GeminiLogging
+	url = https://github.com/wildstarnasa/GeminiLogging.git
+[submodule "lib/GeminiTimer"]
+	path = lib/GeminiTimer
+	url = https://github.com/wildstarnasa/GeminiTimer.git
+[submodule "lib/GeminiHook"]
+	path = lib/GeminiHook
+	url = https://github.com/wildstarnasa/GeminiHook.git
+[submodule "lib/XmlDocument"]
+	path = lib/XmlDocument
+	url = https://github.com/wildstarnasa/XmlDocument.git
