@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Addon Author="Scriptorium" APIVersion="11" Name="SonOfKillroy2" Description="Killroy 2.0">
-    <Script Name="SonOfKillroy2.lua"/>
-    <Form Name="SonOfKillroy2.xml"/>
+<Addon Author="Scriptorium" APIVersion="11" Name="SonOfKillroy" Description="Killroy 2.0">
+    <Script Name="SonOfKillroy.lua"/>
+    <Form Name="SonOfKillroy.xml"/>
+    <Script Name="lib\GeminiAddon\GeminiAddon.lua"/>
+    <Script Name="lib\GeminiColor\GeminiColor.lua"/>
+    <Script Name="lib\GeminiDB\GeminiDB-1.0.lua"/>
+    <Script Name="lib\GeminiEvent\GeminiEvent-1.0.lua"/>
+    <Script Name="lib\GeminiHook\GeminiHook-1.0.lua"/>
+    <Script Name="lib\GeminiLogging\GeminiLogging.lua"/>
+    <Script Name="lib\GeminiTimer\GeminiTimer-1.0.lua"/>
+    <Script Name="lib\XmlDocument\XmlDocument.lua"/>
+    <Script Name="lib\Script\Script.lua"/>
 </Addon>
