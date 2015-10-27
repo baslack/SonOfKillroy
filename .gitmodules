@@ -22,3 +22,6 @@
 [submodule "lib/XmlDocument"]
 	path = lib/XmlDocument
 	url = https://github.com/wildstarnasa/XmlDocument.git
+[submodule "lib/CallbackHandler"]
+	path = lib/CallbackHandler
+	url = https://github.com/wildstarnasa/CallbackHandler.git
