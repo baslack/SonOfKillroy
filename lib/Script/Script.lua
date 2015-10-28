@@ -24,4 +24,4 @@ end
 --Script Functions
 
 --Register Package
-Apollo.RegisterPackage(Script:new(), MAJOR, MINOR, {})
+Apollo.RegisterPackage(Script, MAJOR, MINOR, {})
