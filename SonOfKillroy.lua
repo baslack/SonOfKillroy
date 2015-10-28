@@ -106,14 +106,14 @@ function SonOfKillroy:OnChatLogIsReady()
 	self:RawHook(Apollo.GetAddon("ChatLog"), "HelperGenerateChatMessage")
 end
 
-function SonOfKillroy:HelperGenerateChatMessage(tQueuedMessage)
+function SonOfKillroy:HelperGenerateChatMessage(luaCaller, tQueuedMessage)
 	self.glog:info("Into Hook")
 	self.glog:info(tostring(tQueuedMessage))
 	for i,v in ipairs(tQueuedMessage) do
 		self.glog:info("fired")
 		self.glog:info(i,v)
 	end
-	self.hooks[Apollo.GetAddon("ChatLog")].HelperGenerateChatMessage(tQueuedMessage)
+	self.hooks[Apollo.GetAddon("ChatLog")].HelperGenerateChatMessage(luaCaller, tQueuedMessage)
 	if tQueuedMessage.strMessage then
 		self.glog:info(tQueuedMessage.strMessage)
 	end
