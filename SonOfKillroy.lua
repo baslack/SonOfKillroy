@@ -138,7 +138,7 @@ end
 function SonOfKillroy:FormatForRP(xml)
 	self.glog:info("FormatForRP")
 	local bBeginParse = false
-	local bStateEmote, bStateOOC, bStateQuote, bStateMention = false, false, false, false
+	local bStateEmote, bStateOOC, bStateQuote = false, false, false
 	local tXml = xml:ToTable()
 	local tNewXml = {}
 	local strCollect = ""
@@ -193,6 +193,9 @@ function SonOfKillroy:FormatForRP(xml)
 							-- another text node in. In the final parse
 							-- this will break out the string for
 							-- emotes, mentions, etc.
+							
+							--dummy code for testing insertion of nodes
+							--[[
 							self.glog:info("add Text Node")
 							local tNewTextNode = {}
 							for j, w in pairs(this) do
@@ -202,6 +205,107 @@ function SonOfKillroy:FormatForRP(xml)
 							--because we're adding nodes, we increment
 							index = index + 1
 							table.insert(tCollect, index, tNewTextNode)
+							]]--
+							
+							--assuming we have a text node that actually 
+							--has text, we can start breaking it up
+							if this[1] then
+								local strSegment = this[1].__XmlText
+								local charEmote = '*'
+								local charQuote = '"'
+								local charOOC_Start = '(('
+								local charOOC_End = '))'
+								local tMentions = {'Mention', 'Mention2'}
+								local tParse = {}
+								
+								local tMentionCharacters = {}
+								--marks out mentions
+								for i, this_mention in ipairs(tMentions) do
+									local start, finish = string.find(strSegment, this_mention)
+									while start and finish do --a match was found
+										-- tag the found characters
+										for j = start, finish do
+											tMentionCharacters[j] = true
+										end
+										--look again
+										start, finish = string.find(strSegment, this_mention, finish+1)
+									end
+								end
+
+								local tEmoteCharacters = {}
+								--marks out emotes
+								for i=1, string.len(strSegment) do
+									--currently in an emote
+									if bStateEmote then
+										--record the index
+										tEmoteCharacters[i] = true
+									end
+									if string.sub(strSegment, i) == charEmote then
+										--toggle the Emote State
+										bStateEmote = not(bStateEmote)
+										--the marker always is part of the emote
+										tEmoteCharacters[i] = true
+									end
+								end
+								
+								local tQuoteCharacters = {}
+								--marks out Quotes
+								for i=1, string.len(strSegment) do
+									--currently in an emote
+									if bStateQuote then
+										--record the index
+										tQuoteCharacters[i] = true
+									end
+									if string.sub(strSegment, i) == charQuote then
+										--toggle the Emote State
+										bStateEmote = not(bStateQuote)
+										--the marker always is part of the emote
+										tQuoteCharacters[i] = true
+									end
+								end
+								
+								local tOOCCharacters = {}
+								--marks out OOCs
+								--there are three cases for an OOC block
+								--case1 "<ooctext>))<ictext>"
+								--case2 "<ictext>((<ooctext>"
+								--case3 "<ictext>((<ooctext>))<ictext>"
+								--with one edge case
+								--edgecase "<ooctext>))<ictext>((<ooctext>"
+								
+								--case1
+								--the only way this works if if there was previously
+								--a case2 or case4 to begin the ooc block
+								--therefore those cases will have to set the
+								--OOC state boolean. If that state is set, and case1
+								--occurs, then we format
+								
+								--case2
+								--if this case occurs, the ooc branch has not been
+								--closed we can't know if a branch WILL close however
+								--if it doesn't, do we assume the rest is OOC?
+								--if we don't, how would be know?
+								--don't want to have to backtrack again through the 
+								--xml twice
+								
+								--case3
+								--easiest case. Every edition of this gets formatted.
+								--iterate through them with gmatch and then use find
+								--to get indexes
+								
+								--edgecase
+								--this combines 1 and 2. For the closer to trigger,
+								--the OOC state would need to have been activated previous
+								--for the opener to trigger, we still have to decide
+								--about what we want to happen in it never get's closed
+								
+									
+									
+									
+									
+
+									
+							
 						end
 						-- this is the code that checks for the separator							
 						if this[1] then
